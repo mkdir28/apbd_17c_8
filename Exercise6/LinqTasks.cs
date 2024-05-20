@@ -164,7 +164,10 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<Emp> Task1()
         {
-            IEnumerable<Emp> result = null;
+            //method syntax
+            var methodSyntax =
+                Emps.Where(e => e.Job.Equals("Backend programmer"));
+            IEnumerable<Emp> result = methodSyntax;
             return result;
         }
 
