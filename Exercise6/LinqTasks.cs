@@ -242,7 +242,18 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<object> Task6()
         {
-            IEnumerable<object> result = null;
+            //method syntax
+            var methodSyntax =
+                Emps.Join(Depts,
+                    e => e.Deptno,
+                    d => d.Deptno,
+                    (e, d) => new
+                    {
+                        Name = e.Ename,
+                        Job = e.Job,
+                        NameDepartment = d.Dname
+                    });
+            IEnumerable<object> result = methodSyntax;
             return result;
         }
 
@@ -251,7 +262,15 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<object> Task7()
         {
-            IEnumerable<object> result = null;
+            var methodSyntax =
+                Emps.GroupBy(g => g.Job)
+                    .Select(g => 
+                        new
+                        {
+                            Praca = g, 
+                            LiczbaPracownikow = g.Count()
+                        });
+            IEnumerable<object> result = methodSyntax;
             return result;
         }
 
@@ -282,6 +301,12 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<object> Task10()
         {
+            // var methodSyntax =
+            //     Emps.Select(e => new
+            //     {
+            //         Name = e.Ename, Job = e.Job,
+            //         Hiredate = e.HireDate
+            //     }).Union(Emps, Equals("Brak wartości"), null, null);
             IEnumerable<object> result = null;
             return result;
         }
