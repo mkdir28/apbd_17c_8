@@ -267,7 +267,7 @@ namespace Exercise6
                     .Select(g => 
                         new
                         {
-                            Praca = g, 
+                            Praca = g.Key, 
                             LiczbaPracownikow = g.Count()
                         });
             IEnumerable<object> result = methodSyntax;
