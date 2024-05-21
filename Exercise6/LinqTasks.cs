@@ -199,7 +199,11 @@ namespace Exercise6
         /// </summary>
         public static int Task3()
         {
-            int result = 0;
+            //method syntax
+            var methodSyntax =
+                Emps.Max(e => e.Salary);
+                
+            int result = methodSyntax;
             return result;
         }
 
