@@ -306,21 +306,21 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<object> Task10()
         {
-            // var methodSyntax =
-            //     Emps.Select(e => new
-            //     {
-            //         Name = e.Ename, 
-            //         Job = e.Job,
-            //         Hiredate = e.HireDate
-            //     }).Union(new []
-            //         {
-            //             new {
-            //                 Ename = "Brak wartości", 
-            //                 Job = (string?)null, 
-            //                 Hiredate =(DateTime?)null}
-            //             
-            //         });
-            IEnumerable<object> result = null;
+            var methodSyntax =
+                Emps.Select(e => new
+                    {
+                        Name = e.Ename,
+                        Job = e.Job,
+                        Hiredate = e.HireDate
+                    })
+                    .Union(new[]
+                    {
+                        new { Name = "Brak wartości", 
+                            Job = (string?)null, 
+                            Hiredate = (DateTime?)null }
+                    });
+
+            IEnumerable<object> result = methodSyntax;
             return result;
         }
 
@@ -374,7 +374,11 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<Dept> Task14()
         {
-            IEnumerable<Dept> result = null;
+            var methodSynatx =
+                Depts.Where(d=> Emps.Count(e=>e.Deptno == d.Deptno) == 5
+                || Emps.Count(e=>e.Deptno == d.Deptno) == 0)
+                    .OrderBy(d => d.Dname);
+            IEnumerable<Dept> result = methodSynatx;
             //result =
             return result;
         }
