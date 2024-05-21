@@ -212,7 +212,9 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<Emp> Task4()
         {
-            IEnumerable<Emp> result = null;
+            // method syntax
+            var methodSyntax = Emps.Where(e => e.Salary.Equals(Emps.Max(a => a.Salary)));
+            IEnumerable<Emp> result = methodSyntax;
             return result;
         }
 
