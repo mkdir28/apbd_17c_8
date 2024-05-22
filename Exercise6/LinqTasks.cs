@@ -248,11 +248,12 @@ namespace Exercise6
                     e => e.Deptno,
                     d => d.Deptno,
                     (e, d) => new
-                    {
-                        Name = e.Ename,
-                        Job = e.Job,
-                        NameDepartment = d.Dname
-                    });
+                    { e, d }).Select(result => new
+                {
+                    result.e.Ename,
+                    result.e.Job,
+                    result.d.Dname
+                });
             IEnumerable<object> result = methodSyntax;
             return result;
         }
@@ -363,7 +364,7 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<Emp> Task12()
         {
-            
+            // var methodSyntax = Emps.Task12_Direct_subordinate();
             IEnumerable<Emp> result = null;
             return result;
         }
@@ -406,5 +407,12 @@ namespace Exercise6
     public static class CustomExtensionMethods
     {
         //Put your extension methods here
+        // public static IEnumerable<Emp> Task12_Direct_subordinate(this IEnumerable<Emp> emp)
+        // {
+        //     return
+        //         emp.Where(e=>e.Mgr != null || e.Mgr.Any())
+        //             .OrderBy(e=>e.Ename)
+        //             .OrderByDescending(d => d.Sal);
+        // }
     }
 }
