@@ -337,7 +337,20 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<object> Task11()
         {
-            IEnumerable<object> result = null;
+            var methodSyntax =
+                Emps.Join(Depts,
+                        e => e.Deptno,
+                        d => d.Deptno,
+                        (e, d) => new { e.Deptno, d.Dname })
+                    .GroupBy(d => new { d.Deptno, d.Dname })
+                    .Where(d => d.Count() > 1)
+                    .Select(d => new 
+                    { 
+                        name = d.Key.Dname, 
+                        numOfEmployees = d.Count() 
+                    })
+                    .ToList();
+            IEnumerable<object> result = methodSyntax;
             return result;
         }
 
