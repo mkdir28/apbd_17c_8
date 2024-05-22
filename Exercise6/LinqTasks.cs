@@ -363,6 +363,7 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<Emp> Task12()
         {
+            
             IEnumerable<Emp> result = null;
             return result;
         }
@@ -376,7 +377,12 @@ namespace Exercise6
         /// </summary>
         public static int Task13(int[] arr)
         {
-            int result = 0;
+            var methodSyntx =
+                arr.GroupBy(e => e)
+                    .Where(g => g.Count() % 2 == 1)
+                    .Select(e => e.Key)
+                    .Single();
+            int result = methodSyntx;
             //result=
             return result;
         }
