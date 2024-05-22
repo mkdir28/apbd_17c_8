@@ -317,12 +317,11 @@ namespace Exercise6
                     .Union(new List<object>
                     {
                         new { 
-                            Name = "Brak wartości", 
+                            Ename = "Brak wartości", 
                             Job = (string)null, 
-                            Hiredate = (DateTime?)null 
+                            HireDate = (DateTime?)null 
                         }
                     });
-
             IEnumerable<object> result = methodSyntax;
             return result;
         }
