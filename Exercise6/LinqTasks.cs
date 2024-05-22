@@ -310,15 +310,17 @@ namespace Exercise6
             var methodSyntax =
                 Emps.Select(e => new
                     {
-                        Name = e.Ename,
-                        Job = e.Job,
-                        Hiredate = e.HireDate
+                        e.Ename,
+                        e.Job,
+                        e.HireDate
                     })
-                    .Union(new[]
+                    .Union(new List<object>
                     {
-                        new { Name = "Brak wartości", 
-                            Job = (string?)null, 
-                            Hiredate = (DateTime?)null }
+                        new { 
+                            Name = "Brak wartości", 
+                            Job = (string)null, 
+                            Hiredate = (DateTime?)null 
+                        }
                     });
 
             IEnumerable<object> result = methodSyntax;
@@ -364,8 +366,7 @@ namespace Exercise6
         /// </summary>
         public static IEnumerable<Emp> Task12()
         {
-            // var methodSyntax = Emps.Task12_Direct_subordinate();
-            IEnumerable<Emp> result = null;
+            IEnumerable<Emp> result = Emps.Task12_Direct_subordinate();
             return result;
         }
 
@@ -407,12 +408,13 @@ namespace Exercise6
     public static class CustomExtensionMethods
     {
         //Put your extension methods here
-        // public static IEnumerable<Emp> Task12_Direct_subordinate(this IEnumerable<Emp> emp)
-        // {
-        //     return
-        //         emp.Where(e=>e.Mgr != null || e.Mgr.Any())
-        //             .OrderBy(e=>e.Ename)
-        //             .OrderByDescending(d => d.Sal);
-        // }
+        public static IEnumerable<Emp> Task12_Direct_subordinate(this IEnumerable<Emp> emp)
+        {
+            IEnumerable<Emp> result = emp.Where(e => emp.Any(mgr => mgr.Empno == e.Empno))
+                    .OrderBy(e => e.Ename)
+                    .ThenByDescending(e => e.Salary);
+
+            return result;
+        }
     }
 }
